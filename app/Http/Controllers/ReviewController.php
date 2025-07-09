@@ -7,7 +7,7 @@ use App\Models\Feedback;
 use App\Models\Item;
 use Illuminate\Support\Facades\Auth;
 
-class FeedbackController extends Controller
+class ReviewController extends Controller
 {
     // Show the feedback submission form
     public function showForm()
