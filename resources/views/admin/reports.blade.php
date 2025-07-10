@@ -12,7 +12,8 @@
         <p class="text-gray-600 text-sm mt-1">Overview of all customer feedback across items</p>
     </div>
     <a href="{{ route('admin.reports.export') }}"
-   target="_blank" {{-- ← THIS is the fix --}}
+   target="_blank"
+   rel="noopener noreferrer"
    class="inline-flex items-center gap-2 bg-[#DE1975] hover:bg-[#c51667] text-white px-5 py-2 rounded-full shadow transition hover:scale-105">
     <i class="fas fa-file-export"></i> Export CSV
 </a>
