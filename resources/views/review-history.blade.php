@@ -103,13 +103,14 @@
 @if ($feedback->photo_path)
     <div class="mt-4">
         <p class="text-sm text-gray-500 mb-1">Uploaded Photo:</p>
-        <a href="{{ $feedback->photo_path }}" target="_blank">
-            <img src="{{ $feedback->photo_path }}"
+        <a href="{{ asset('storage/' . $feedback->photo_path) }}" target="_blank">
+            <img src="{{ asset('storage/' . $feedback->photo_path) }}"
                  alt="Feedback photo"
                  class="w-28 h-32 rounded-md border shadow hover:scale-105 transition" />
         </a>
     </div>
-@endif
+@endif 
+
 
 
 

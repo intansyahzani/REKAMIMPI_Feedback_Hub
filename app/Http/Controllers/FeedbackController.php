@@ -45,28 +45,12 @@ class FeedbackController extends Controller
         // Store photo and save relative path (not full URL)
 $photoPath = null;
 
+  // Handle photo upload if provided
+        // Store photo and save relative path (not full URL)
+$photoPath = null;
 if ($request->hasFile('photo')) {
-    try {
-        // Upload to "feedback_photos" folder with a unique filename (optional)
-        $uploaded = Cloudinary::upload(
-            $request->file('photo')->getRealPath(),
-            [
-                'folder' => 'feedback_photos',
-                'public_id' => 'feedback_' . time(), // optional: makes it feedback_1720587920.jpg
-            ]
-        );
-
-        // Get secure Cloudinary URL
-        $photoPath = $uploaded->getSecurePath();
-    } catch (\Exception $e) {
-        return back()->withErrors(['photo' => 'Image upload failed: ' . $e->getMessage()]);
-    }
+    $photoPath = $request->file('photo')->store('feedback_photos', 'public');
 }
-
-        
-
-        
-
         // Store feedback
        Feedback::create([
         'customer_id' => $customer->id,
