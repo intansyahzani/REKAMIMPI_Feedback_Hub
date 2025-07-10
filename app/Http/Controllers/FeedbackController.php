@@ -43,7 +43,8 @@ class FeedbackController extends Controller
         // Store photo and save relative path (not full URL)
 $photoPath = null;
 if ($request->hasFile('photo')) {
-    $photoPath = $request->file('photo')->store('feedback_photos', 'public');
+    $uploadedFileUrl = Cloudinary::upload($request->file('photo')->getRealPath())->getSecurePath();
+    $photoPath = $uploadedFileUrl;
 }
 
         
