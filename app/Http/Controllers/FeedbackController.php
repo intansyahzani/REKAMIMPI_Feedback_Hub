@@ -40,11 +40,16 @@ class FeedbackController extends Controller
         }
 
         // Handle photo upload if provided
-        $photoPath = null;
-        if ($request->hasFile('photo')) {
-    $uploadedFileUrl = Cloudinary::upload($request->file('photo')->getRealPath())->getSecurePath();
-    $photoPath = $uploadedFileUrl; // Store the full URL
+       $photoPath = null;
+if ($request->hasFile('photo')) {
+    try {
+        $uploadedFileUrl = Cloudinary::upload($request->file('photo')->getRealPath())->getSecurePath();
+        $photoPath = $uploadedFileUrl;
+    } catch (\Exception $e) {
+        return back()->withErrors(['photo' => 'Upload error: ' . $e->getMessage()]);
+    }
 }
+
 
         // Store feedback
        Feedback::create([
