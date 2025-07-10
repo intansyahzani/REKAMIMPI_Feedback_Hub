@@ -1,1 +1,1 @@
-web: ln -s /app/storage/app/public /app/public/storage && php artisan serve --host=0.0.0.0 --port=${PORT}
+web: [ -d public/storage ] || php artisan storage:link; php artisan serve --host=0.0.0.0 --port=${PORT}
