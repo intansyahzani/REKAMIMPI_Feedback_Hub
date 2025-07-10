@@ -114,6 +114,7 @@
 
 
 
+
                         @if($feedback->response)
                             <div class="mt-4 p-3 bg-gray-100 rounded text-sm text-gray-700 italic">
                                 <strong class="not-italic text-[#DE1975]">Admin Response:</strong> {{ $feedback->response }}
