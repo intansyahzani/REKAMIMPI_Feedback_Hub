@@ -37,7 +37,10 @@ Route::middleware([AdminAuth::class])->group(function () {
 
     // 📁 Report Exporting
     Route::get('/admin/reports', [ReportController::class, 'reportsView'])->name('admin.reports');
+    Route::middleware(['auth'])->group(function () {
     Route::get('/admin/reports/export', [ReportController::class, 'exportCsv'])->name('admin.reports.export');
+});
+
 
     // 📮 Respond/Delete Feedback
     Route::post('/feedback/{id}/response', [FeedbackController::class, 'respond'])->name('feedback.respond');
