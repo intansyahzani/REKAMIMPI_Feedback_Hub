@@ -42,8 +42,10 @@ class FeedbackController extends Controller
         // Handle photo upload if provided
         $photoPath = null;
         if ($request->hasFile('photo')) {
-            $photoPath = $request->file('photo')->store('feedback_photos', 'public');
-        }
+    $path = $request->file('photo')->store('feedback_photos', 'public');
+    $photoPath = asset('storage/' . $path); // ✅ This makes it accessible from browser
+}
+        
 
         // Store feedback
        Feedback::create([
