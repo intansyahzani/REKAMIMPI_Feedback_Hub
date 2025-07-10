@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 class FeedbackController extends Controller
 {
+    
     // Show the feedback submission form
     public function showForm()
     {
@@ -22,6 +23,7 @@ class FeedbackController extends Controller
     // Handle feedback submission
     public function submit(Request $request)
     {
+         dd(env('CLOUDINARY_URL')); 
         $validated = $request->validate([
     'name' => 'required|string|max:255',
     'item_id' => 'required|exists:items,id',
