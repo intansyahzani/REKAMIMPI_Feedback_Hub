@@ -47,12 +47,23 @@ $photoPath = null;
 
 if ($request->hasFile('photo')) {
     try {
-        $uploadedFileUrl = Cloudinary::upload($request->file('photo')->getRealPath())->getSecurePath();
-        $photoPath = $uploadedFileUrl;
+        // Upload to "feedback_photos" folder with a unique filename (optional)
+        $uploaded = Cloudinary::upload(
+            $request->file('photo')->getRealPath(),
+            [
+                'folder' => 'feedback_photos',
+                'public_id' => 'feedback_' . time(), // optional: makes it feedback_1720587920.jpg
+            ]
+        );
+
+        // Get secure Cloudinary URL
+        $photoPath = $uploaded->getSecurePath();
     } catch (\Exception $e) {
         return back()->withErrors(['photo' => 'Image upload failed: ' . $e->getMessage()]);
     }
 }
+
+        
 
         
 
