@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Http\Request;
 use App\Models\Feedback;
 use App\Models\Item;
@@ -41,8 +42,9 @@ class FeedbackController extends Controller
         // Handle photo upload if provided
         $photoPath = null;
         if ($request->hasFile('photo')) {
-            $photoPath = $request->file('photo')->store('feedback_photos', 'public');
-        }
+    $uploadedFileUrl = Cloudinary::upload($request->file('photo')->getRealPath())->getSecurePath();
+    $photoPath = $uploadedFileUrl; // Store the full URL
+}
 
         // Store feedback
        Feedback::create([
