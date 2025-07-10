@@ -28,7 +28,7 @@ class FeedbackController extends Controller
     'item_id' => 'required|exists:items,id',
     'star_rating' => 'required|integer|min:1|max:5',
     'remarks' => 'required|string|max:1000',
-    'photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048', // <= new line
+    //'photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048', // <= new line
 ]);
         
 
@@ -40,23 +40,14 @@ class FeedbackController extends Controller
             $customer = Customer::firstOrCreate(['customer_name' => $validated['name']]);
         }
 
-        // Handle photo upload if provided
-        // Store photo and save relative path (not full URL)
-$photoPath = null;
-
-  // Handle photo upload if provided
-        // Store photo and save relative path (not full URL)
-$photoPath = null;
-if ($request->hasFile('photo')) {
-    $photoPath = $request->file('photo')->store('feedback_photos', 'public');
-}
+  
         // Store feedback
        Feedback::create([
         'customer_id' => $customer->id,
         'item_id' => $validated['item_id'],
         'star_rating' => $validated['star_rating'],
         'feedback_text' => $validated['remarks'],
-        'photo_path' => $photoPath, // <= new line
+        //'photo_path' => $photoPath, // <= new line
         'response' => null,
         'submission_date' => now(),
         'status' => 'new',

@@ -109,14 +109,6 @@
                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#DE1975] text-sm min-h-[120px] resize-y"></textarea>
     </div>
 
-    <!-- Upload Picture -->
-<div class="mb-6">
-  <label for="photo" class="block text-sm font-semibold mb-1">Upload Image (optional)</label>
-  <input type="file" id="photo" name="photo" accept="image/*"
-         class="w-full text-sm px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#DE1975]">
-</div>
-
-
     <!-- Submit Button -->
     <div class="text-center">
       <button type="submit"

@@ -100,20 +100,6 @@
                         </div>
 
                         <p class="text-gray-700 text-sm md:text-base">{{ $feedback->feedback_text ?? '-' }}</p>
-@if ($feedback->photo_path)
-    <div class="mt-4">
-        <p class="text-sm text-gray-500 mb-1">Uploaded Photo:</p>
-        <a href="{{ asset('storage/' . $feedback->photo_path) }}" target="_blank">
-            <img src="{{ asset('storage/' . $feedback->photo_path) }}"
-                 alt="Feedback photo"
-                 class="w-28 h-32 rounded-md border shadow hover:scale-105 transition" />
-        </a>
-    </div>
-@endif 
-
-
-
-
 
 
                         @if($feedback->response)
