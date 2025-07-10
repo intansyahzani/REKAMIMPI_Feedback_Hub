@@ -23,7 +23,7 @@ class FeedbackController extends Controller
     // Handle feedback submission
     public function submit(Request $request)
     {
-         dd(env('CLOUDINARY_URL')); 
+
         $validated = $request->validate([
     'name' => 'required|string|max:255',
     'item_id' => 'required|exists:items,id',
@@ -44,9 +44,14 @@ class FeedbackController extends Controller
         // Handle photo upload if provided
         // Store photo and save relative path (not full URL)
 $photoPath = null;
+
 if ($request->hasFile('photo')) {
-    $uploadedFileUrl = Cloudinary::upload($request->file('photo')->getRealPath())->getSecurePath();
-    $photoPath = $uploadedFileUrl;
+    try {
+        $uploadedFileUrl = Cloudinary::upload($request->file('photo')->getRealPath())->getSecurePath();
+        $photoPath = $uploadedFileUrl;
+    } catch (\Exception $e) {
+        return back()->withErrors(['photo' => 'Image upload failed: ' . $e->getMessage()]);
+    }
 }
 
         
